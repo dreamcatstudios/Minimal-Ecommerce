@@ -1,0 +1,37 @@
+.news {
+  display: flex;
+  background-color: #191919;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 12rem;
+  height: 25rem;
+  gap: 1rem;
+}
+
+.news div {
+  display: flex;
+  gap: 10px;
+}
+.news-content {
+  display: flex;
+  gap: 10px;
+}
+
+.news h1 {
+  color: #fff;
+  font-size: 4rem;
+}
+
+.news-content input {
+  border: none;
+  padding: 10px;
+  text-decoration: none;
+  outline: none;
+}
+
+.news-content button {
+  border: none;
+  padding: 10px;
+  font-weight: 500;
+}
