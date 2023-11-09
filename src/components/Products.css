@@ -45,10 +45,17 @@
 .product-name {
   font-size: 1.85rem;
   font-weight: 400;
+  color: black;
 }
 
 .heading-products {
   font-size: 3rem;
   font-weight: 600;
   margin-bottom: 3rem;
+}
+
+.product-price {
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
 }

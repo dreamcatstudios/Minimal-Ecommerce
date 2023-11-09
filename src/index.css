@@ -20,6 +20,10 @@ html {
   margin: 15rem;
 }
 
+.flex {
+  display: flex;
+}
+
 @media only screen and (max-width: 1024px) {
   .container {
     margin: 5rem;

@@ -1,6 +1,7 @@
 import React from "react";
 import "./Products.css";
 import { useGlobalStore } from "../context/Store";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const { data } = useGlobalStore();
@@ -11,11 +12,17 @@ const Products = () => {
       <div className="grid-products">
         {data?.map((item, index) =>
           index < 8 ? (
-            <div key={index} className="products">
-              <img className="product-img" src={item.img} alt="" />
-              <h3 className="product-name">{item.description}</h3>
-              <h1>${item.price}</h1>
-            </div>
+            <Link
+              key={index}
+              style={{ textDecoration: "none" }}
+              to={`product/${item.id}`}
+            >
+              <div className="products">
+                <img className="product-img" src={item.img} alt="" />
+                <h3 className="product-name">{item.description}</h3>
+                <h1 className="product-price">${item.price}</h1>
+              </div>
+            </Link>
           ) : null
         )}
       </div>
