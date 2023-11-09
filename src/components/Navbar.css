@@ -31,7 +31,11 @@ nav {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
+  nav {
+    padding: 0.5rem 5rem;
+  }
+
   .nav-links {
     display: none;
   }

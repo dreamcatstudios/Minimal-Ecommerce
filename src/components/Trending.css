@@ -1,0 +1,24 @@
+.scroll-products {
+  display: flex;
+  gap: 2rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.products-trending {
+  border: gray solid 1px;
+  transition: all 0.2s ease-in-out;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-img-trending {
+  max-width: 100%;
+}
+
+.product-name-trending {
+  white-space: nowrap;
+  font-size: 2rem;
+  text-align: left;
+}
