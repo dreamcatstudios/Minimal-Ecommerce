@@ -4,8 +4,39 @@ import { useState, useEffect, createContext, useContext } from "react";
 const StoreContext = createContext();
 
 function StoreProvider({ children }) {
-  const [data, setData] = useState();
+  // Initialize state values with localStorage values if available
+  const [data, setData] = useState(
+    JSON.parse(localStorage.getItem("data")) || null
+  );
   const [error, setError] = useState(null);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
+
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const addCart = (products) => {
+    setCart((prevCart) => [...prevCart, products]);
+  };
+
+  const removeItem = (id) => {
+    console.log("id: ", id);
+    const updatedCart = cart.filter((_, index) => index != id);
+    setCart(updatedCart);
+  };
+
+  const totalPriceHandler = () => {
+    let price = 0;
+    if (cart.length === 0) {
+      setTotalPrice(0);
+    } else {
+      cart.forEach((item) => {
+        price += item.price * item.quantity;
+      });
+      setTotalPrice(price);
+    }
+  };
+
   const URL =
     "https://minimal-ecommerce-26cd6-default-rtdb.firebaseio.com/.json";
 
@@ -14,6 +45,8 @@ function StoreProvider({ children }) {
       const response = await axios.get(url);
       const resData = response.data;
       setData(resData);
+      // Update localStorage with the new data
+      localStorage.setItem("data", JSON.stringify(resData));
     } catch (error) {
       setError(error);
     }
@@ -27,8 +60,17 @@ function StoreProvider({ children }) {
     console.log("data: ", data);
   }, [data]);
 
+  useEffect(() => {
+    console.log("cart: ", cart);
+    totalPriceHandler();
+    // Update localStorage with the new cart state
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
-    <StoreContext.Provider value={{ data, error }}>
+    <StoreContext.Provider
+      value={{ data, error, cart, addCart, removeItem, totalPrice }}
+    >
       {children}
     </StoreContext.Provider>
   );

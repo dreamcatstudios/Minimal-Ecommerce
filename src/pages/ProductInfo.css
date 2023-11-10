@@ -35,6 +35,9 @@
 .quantity {
   display: flex;
   align-items: center;
+  color: #000;
+  text-align: center;
+  justify-content: center;
 }
 .quantity div {
   padding: 2rem;
@@ -51,6 +54,10 @@
 }
 .quantity button:nth-child(2) {
   background-color: #fff;
+}
+.quantity-number {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .cart {

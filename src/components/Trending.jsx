@@ -15,8 +15,10 @@ const Trending = () => {
           .map((item, index) => (
             <div key={index} className="products-trending">
               <img className="product-img-trending" src={item.img} alt="" />
-              <h3 className="product-name-trending">{item.description}</h3>
-              <h1>${item.price}</h1>
+              <div className="div-bottom">
+                <h3 className="product-name-trending">{item.description}</h3>
+                <h1>${item.price}</h1>
+              </div>
             </div>
           ))}
       </div>

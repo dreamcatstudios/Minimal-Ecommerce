@@ -15,13 +15,13 @@ footer div {
   justify-content: center;
 }
 
-a {
+footer a {
   text-decoration: none;
-  color: #fff;
+  color: #fff !important;
   font-size: 2rem;
 }
 
-p {
+footer p {
   text-align: center;
   color: #fff;
   font-size: 2rem;
