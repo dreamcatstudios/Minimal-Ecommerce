@@ -4,17 +4,24 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import ProductInfo from "./pages/ProductInfo";
 import Categories from "./pages/Categories";
+import Error from "./pages/Error";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Homepage /> },
-  { path: "/categories", element: <Categories /> },
   {
-    path: "/product",
-    element: <ProductInfo />,
+    path: "/",
+    errorElement: <Error />,
     children: [
+      { index: true, element: <Homepage /> },
+      { path: "categories", element: <Categories /> },
       {
-        path: ":productId", // Use a dynamic parameter like :productId
+        path: "product",
         element: <ProductInfo />,
+        children: [
+          {
+            path: ":productId",
+            element: <ProductInfo />,
+          },
+        ],
       },
     ],
   },

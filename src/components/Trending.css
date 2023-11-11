@@ -25,3 +25,16 @@
   font-size: 2rem;
   text-align: left;
 }
+
+@media screen and (max-width: 768px) {
+  .product-img-trending {
+    max-width: 10rem;
+    height: 12rem;
+    padding: 0rem;
+  }
+  .product-name-trending {
+    white-space: nowrap;
+    font-size: 1.65rem;
+    text-align: left;
+  }
+}

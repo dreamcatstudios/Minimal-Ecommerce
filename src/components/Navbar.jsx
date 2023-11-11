@@ -38,9 +38,9 @@ const Navbar = () => {
           <path d="M6 6l12 12"></path>
         </svg>
         <div>
-          <a href="#">Categories</a>
+          <a href="categories">Categories</a>
 
-          <a href="#">Lamps</a>
+          <a href="/">Home</a>
 
           <a href="#">Product Page</a>
         </div>
@@ -68,6 +68,8 @@ const Navbar = () => {
             <path d="M6 6l12 12"></path>
           </svg>
         </div>
+
+        {/* Checkout Page */}
         <div className="cart-body">
           <div className="full-cart-div">
             <div className="full-cart">
@@ -113,10 +115,11 @@ const Navbar = () => {
               <p className="total-price">Total: ${totalPrice}</p>
             </div>
             <div className="sub-left">
-              <a href="/product/1">Go to Checkout</a>
+              <a onClick={null}>Go to Checkout</a>
             </div>
           </div>
         </div>
+        {/* Checkout Page */}
       </div>
 
       <nav>
@@ -127,10 +130,11 @@ const Navbar = () => {
         <div className="nav-links">
           <a href="/categories">categories</a>
           <a href="/product/1">product page</a>
+
           <i
-            onClick={() => onCartClickHandler()}
-            data-array-length="1"
-            className="cart-icon with-items"
+            onClick={onCartClickHandler}
+            data-array-length={cart.length}
+            className={`cart-icon ${cart.length > 0 ? "with-items" : null}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -151,11 +155,12 @@ const Navbar = () => {
             </svg>
           </i>
         </div>
+
         <div className="hamburger-menu">
           <i
-            onClick={() => onCartClickHandler()}
-            data-array-length="0"
-            className="hamburger-cart cart-icon"
+            onClick={onCartClickHandler}
+            data-array-length={cart.length}
+            className={`cart-icon ${cart.length > 0 ? "with-items" : null}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +172,7 @@ const Navbar = () => {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              className="tabler-icon tabler-icon-shopping-cart"
+              class="tabler-icon tabler-icon-shopping-cart"
             >
               <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
               <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
@@ -175,6 +180,7 @@ const Navbar = () => {
               <path d="M6 5l14 1l-1 7h-13"></path>
             </svg>
           </i>
+
           <i className="hamburger-hamb">
             <svg
               xmlns="http://www.w3.org/2000/svg"
