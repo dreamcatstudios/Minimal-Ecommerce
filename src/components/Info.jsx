@@ -19,7 +19,7 @@ const Info = () => {
             </div>
           </div>
           <div class="img-side">
-            <img src="/src/assets/img/banner/banner1.jpg" alt="banner" />
+            <img src="../assets/img/banner/banner2.jpg" alt="banner" />
           </div>
         </div>
       </div>

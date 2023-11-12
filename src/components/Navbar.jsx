@@ -51,7 +51,7 @@ const Navbar = () => {
         <div>
           <a href="categories">Categories</a>
           <a href="/">Home</a>
-          <a href="#">Product Page</a>
+          <a href="">Product Page</a>
         </div>
       </div>
 
@@ -138,7 +138,7 @@ const Navbar = () => {
 
       <nav>
         <a href="/">
-          <img className="logo-img" src="/src/assets/img/newlogo2.png" alt="" />
+          <img className="logo-img" src="../assets/img/newlogo2.png" alt="logo" />
         </a>
 
         <div className="nav-links">

@@ -17,6 +17,7 @@ import {
 const ProductInfo = () => {
   const [state, setState] = useState(false);
   const [message, setMessage] = useState("");
+
   const handleClose = () => {
     setState(false);
   };
@@ -25,7 +26,7 @@ const ProductInfo = () => {
   const [quantity, setQuantity] = useState(0);
   const [showError, setShowError] = useState(false);
   const { productId } = useParams();
-  const { data, addCart } = useGlobalStore();
+  const { data, addCart, handleLastProduct } = useGlobalStore();
 
   const onHoverImg = (e) => {
     setImage(e);
@@ -61,6 +62,7 @@ const ProductInfo = () => {
   useEffect(() => {
     scrollToTop();
     data[productId - 1].img && setImage(data[productId - 1].img);
+    handleLastProduct(productId);
   }, []);
 
   return (

@@ -10,13 +10,21 @@ function StoreProvider({ children }) {
   );
   const [error, setError] = useState(null);
   const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || []
+    JSON.parse(localStorage.getItem("cart")) || [
+      { id: 1, quantity: 1, price: 0, title: "", img: "" },
+    ]
   );
 
   const [totalPrice, setTotalPrice] = useState(0);
 
+  const [lastProduct, setLastProduct] = useState(1);
+
   const addCart = (products) => {
     setCart((prevCart) => [...prevCart, products]);
+  };
+
+  const handleLastProduct = (item) => {
+    setCart(item);
   };
 
   const increaseQuantity = (product) => {
@@ -97,6 +105,7 @@ function StoreProvider({ children }) {
         totalPrice,
         increaseQuantity,
         decreaseQuantity,
+        handleLastProduct,
       }}
     >
       {children}
