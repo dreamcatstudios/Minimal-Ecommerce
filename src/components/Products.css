@@ -27,6 +27,12 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
+
+  @media screen and (max-width: 768px) {
+    .products {
+      padding: 1rem !important;
+    }
+  }
   .products {
     display: flex;
     flex-direction: column;
@@ -39,7 +45,7 @@
   }
 }
 .product-img {
-  width: 25rem;
+  max-width: 25rem;
 }
 
 .product-name {

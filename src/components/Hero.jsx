@@ -18,8 +18,7 @@ const Hero = () => {
 
       <div className="grid-3 ">
         <Link
-          style={{ textDecoration: "none" }}
-          style={{ width: "100%" }}
+          style={({ textDecoration: "none" }, { width: "100%" })}
           to={"/categories/kitchen"}
         >
           <div className="grid-4">
@@ -27,8 +26,7 @@ const Hero = () => {
           </div>
         </Link>
         <Link
-          style={{ textDecoration: "none" }}
-          style={{ width: "100%" }}
+          style={({ textDecoration: "none" }, { width: "100%" })}
           to={"/categories/electronic"}
         >
           <div className="grid-5">

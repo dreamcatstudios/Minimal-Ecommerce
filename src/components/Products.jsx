@@ -15,7 +15,6 @@ const Products = () => {
             <Link
               style={{ textDecoration: "none" }}
               key={index}
-              style={{ textDecoration: "none" }}
               to={`product/${item.id}`}
             >
               <div className="products">
