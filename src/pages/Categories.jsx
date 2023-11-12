@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Categories.css";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { useGlobalStore } from "../context/Store";
+import { useParams } from "react-router-dom";
+import {
+  Link,
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+} from "react-scroll";
 
 const Categories = () => {
   const { data } = useGlobalStore();
+  const { filter } = useParams();
 
   const [categories, setCategories] = useState(data);
 
@@ -18,6 +27,20 @@ const Categories = () => {
       setCategories(updatedData);
     }
   };
+
+  const scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
+  useEffect(() => {
+    scrollToTop();
+    if (filter?.length === undefined) {
+      filterCategory("all");
+    } else {
+      console.log(filter?.length);
+      filterCategory(filter);
+    }
+  }, []);
 
   return (
     <>

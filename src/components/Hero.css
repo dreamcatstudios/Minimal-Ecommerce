@@ -27,11 +27,13 @@
 
 .grid-4 {
   position: relative;
+  height: 100%;
   background-image: url("/src/assets/img/header/home-img-3.jpg");
   background-position: center;
   background-size: cover;
 }
 .grid-5 {
+  height: 100%;
   position: relative;
   background-image: url("/src/assets/img/header/home-img-4.jpg");
   background-position: center;

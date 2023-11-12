@@ -19,6 +19,25 @@ function StoreProvider({ children }) {
     setCart((prevCart) => [...prevCart, products]);
   };
 
+  const increaseQuantity = (product) => {
+    const updatedCart = cart.map((item) =>
+      item === product ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCart(updatedCart);
+  };
+
+  const decreaseQuantity = (product) => {
+    const updatedCart = cart.map((item) =>
+      item === product
+        ? {
+            ...item,
+            quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity,
+          }
+        : item
+    );
+    setCart(updatedCart);
+  };
+
   const removeItem = (id) => {
     console.log("id: ", id);
     const updatedCart = cart.filter((_, index) => index != id);
@@ -69,7 +88,16 @@ function StoreProvider({ children }) {
 
   return (
     <StoreContext.Provider
-      value={{ data, error, cart, addCart, removeItem, totalPrice }}
+      value={{
+        data,
+        error,
+        cart,
+        addCart,
+        removeItem,
+        totalPrice,
+        increaseQuantity,
+        decreaseQuantity,
+      }}
     >
       {children}
     </StoreContext.Provider>

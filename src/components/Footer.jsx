@@ -13,7 +13,10 @@ const Footer = () => {
         <a href="#">Careers</a>
         <a href="#">Contact Us</a>
       </div>
-      <p>Minimal Ecommerce - ©{currentYear} </p>
+      <p>
+        Minimal Ecommerce - ©{currentYear}
+        <br></br> by Jatin Bhandari
+      </p>
     </footer>
   );
 };

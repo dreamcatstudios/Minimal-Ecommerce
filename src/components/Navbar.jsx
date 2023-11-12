@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { useGlobalStore } from "../context/Store";
 
@@ -6,7 +6,14 @@ const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
   const [overlay, setOverlay] = useState(false);
-  const { cart, removeItem, totalPrice } = useGlobalStore();
+  const {
+    cart,
+    removeItem,
+    totalPrice,
+    addCart,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useGlobalStore();
 
   const onMobileClickHandler = () => {
     setMobileMenu(!mobileMenu);
@@ -18,9 +25,13 @@ const Navbar = () => {
     setOverlay(!overlay);
   };
 
+  useEffect(() => {
+    console.log("cart: ", cart);
+  }, []);
+
   return (
     <>
-      <div className={`mobile-menu ${mobileMenu ? "block" : null}`}>
+      <div className={`mobile-menu ${mobileMenu ? "block" : ""}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -28,27 +39,25 @@ const Navbar = () => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="x-mobile"
-          onClick={() => onMobileClickHandler()}
+          onClick={onMobileClickHandler}
         >
           <path d="M18 6l-12 12"></path>
           <path d="M6 6l12 12"></path>
         </svg>
         <div>
           <a href="categories">Categories</a>
-
           <a href="/">Home</a>
-
           <a href="#">Product Page</a>
         </div>
       </div>
 
-      <div className={`dark-overlay ${overlay ? "block" : null}`}></div>
+      <div className={`dark-overlay ${overlay ? "block" : ""}`}></div>
 
-      <div className={`cart-div ${cartMenu ? "open-cart" : "closed-cart"} `}>
+      <div className={`cart-div ${cartMenu ? "open-cart" : "closed-cart"}`}>
         <div className="cart-title-btn">
           <h2 className="cart-full-h2">{`Your Shopping Cart (${cart.length})`}</h2>
           <svg
@@ -59,9 +68,9 @@ const Navbar = () => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="tabler-icon tabler-icon-x"
           >
             <path d="M18 6l-12 12"></path>
@@ -72,42 +81,47 @@ const Navbar = () => {
         {/* Checkout Page */}
         <div className="cart-body">
           <div className="full-cart-div">
-            <div className="full-cart">
-              {cart?.map((item, index) => (
-                <div key={index} className="cart-item">
-                  <div className="cart-img">
-                    <img src={item.img} alt="product" />
-                  </div>
-                  <div className="cart-middle">
-                    <p className="cart-name">{item.name}</p>
-                    <div className="cart-btns">
-                      <button>-</button>
-                      <p className="quantity">{item.quantity}</p>
-                      <button>+</button>
+            <di className="full-cart">
+              {cart &&
+                cart?.map((item, index) => (
+                  <div key={index} className="cart-item">
+                    <div className="cart-img">
+                      <img src={item.img} alt="product" />
+                    </div>
+                    <div className="cart-middsle">
+                      <p className="cart-name">{item.name}</p>
+                      <div className="cart-btns">
+                        <button onClick={() => decreaseQuantity(item)}>
+                          -
+                        </button>
+                        <p className="quantity">{item.quantity}</p>
+                        <button onClick={() => increaseQuantity(item)}>
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="cart-right">
+                      <p className="cart-price">${item.price}</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="tabler-icon tabler-icon-x"
+                        onClick={() => removeItem(cart.indexOf(item))}
+                      >
+                        <path d="M18 6l-12 12"></path>
+                        <path d="M6 6l12 12"></path>
+                      </svg>
                     </div>
                   </div>
-                  <div className="cart-right">
-                    <p className="cart-price">${item.price}</p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="tabler-icon tabler-icon-x"
-                      onClick={() => removeItem(cart.indexOf(item))}
-                    >
-                      <path d="M18 6l-12 12"></path>
-                      <path d="M6 6l12 12"></path>
-                    </svg>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+            </di>
           </div>
           <div className="subtotal-div">
             <div className="sub-right">
@@ -132,9 +146,9 @@ const Navbar = () => {
           <a href="/product/1">product page</a>
 
           <i
-            onClick={onCartClickHandler}
+            onClick={() => onCartClickHandler()}
             data-array-length={cart.length}
-            className={`cart-icon ${cart.length > 0 ? "with-items" : null}`}
+            className={`cart-icon ${cart.length > 0 ? "with-items" : ""}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -143,9 +157,9 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="tabler-icon tabler-icon-shopping-cart"
             >
               <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
@@ -158,9 +172,9 @@ const Navbar = () => {
 
         <div className="hamburger-menu">
           <i
-            onClick={onCartClickHandler}
+            onClick={() => onCartClickHandler()}
             data-array-length={cart.length}
-            className={`cart-icon ${cart.length > 0 ? "with-items" : null}`}
+            className={`cart-icon ${cart.length > 0 ? "with-items" : ""}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -169,10 +183,10 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="tabler-icon tabler-icon-shopping-cart"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="tabler-icon tabler-icon-shopping-cart"
             >
               <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
               <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
@@ -189,9 +203,9 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="tabler-icon tabler-icon-menu-2"
               onClick={() => onMobileClickHandler()}
             >

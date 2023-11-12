@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import { useParams } from "react-router-dom";
 import { useGlobalStore } from "../context/Store";
-import { Alert, Snackbar, Stack } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
 import {
   Link,
   Button,
@@ -16,18 +16,21 @@ import {
 
 const ProductInfo = () => {
   const [state, setState] = useState(false);
-
   const [message, setMessage] = useState("");
-
   const handleClose = () => {
     setState(false);
   };
 
+  const [image, setImage] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [showError, setShowError] = useState(false);
   const { productId } = useParams();
-
   const { data, addCart } = useGlobalStore();
+
+  const onHoverImg = (e) => {
+    setImage(e);
+  };
+
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
@@ -46,19 +49,18 @@ const ProductInfo = () => {
     if (quantity <= 0) {
       setMessage("Quantity cannot be zero ‼️");
       setShowError(true);
-      // Set a timeout to automatically hide the Snackbar after a few seconds
-      setTimeout(() => setShowError(false), 3000); // Adjust the time as needed (3000 milliseconds = 3 seconds)
+      setTimeout(() => setShowError(false), 3000);
     } else {
       setMessage("Your item has been added to the cart 🛒😄‼️");
       setShowError(true);
-      // Set a timeout to automatically hide the Snackbar after a few seconds
-      setTimeout(() => setShowError(false), 3000); // Adjust the time as needed (3000 milliseconds = 3 seconds)
+      setTimeout(() => setShowError(false), 3000);
       addCart(item);
     }
   };
 
   useEffect(() => {
     scrollToTop();
+    data[productId - 1].img && setImage(data[productId - 1].img);
   }, []);
 
   return (
@@ -69,8 +71,25 @@ const ProductInfo = () => {
           <div key={index} className="container product-info">
             <h1 className="product-info-heading">{item.description}</h1>
             <div className="product-page-grid">
-              <div>
-                <img src={item.img} alt="" />
+              <div className="left-grid">
+                <img className="large-image" src={image} alt="" />
+                <div className="small-images">
+                  <div
+                    onClick={() => onHoverImg(item.img)}
+                    onMouseEnter={() => onHoverImg(item.img)}
+                  >
+                    <img src={item.img} alt="alt-images" />
+                  </div>
+                  {item?.otherImgs?.map((img, index) => (
+                    <div
+                      onClick={() => onHoverImg(img)}
+                      onMouseEnter={() => onHoverImg(img)}
+                      key={index}
+                    >
+                      <img src={img} alt="alt-images" />
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="gray-grid">
                 <p>{item.specs}</p>
@@ -104,8 +123,8 @@ const ProductInfo = () => {
 
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={showError} // Corrected from open={open}
-        autoHideDuration={3000} // Adjusted the duration to 3000 milliseconds (3 seconds)
+        open={showError}
+        autoHideDuration={3000}
         message={message}
         onClose={handleClose}
         sx={{
