@@ -46,9 +46,9 @@
   font-size: 3rem;
 }
 
-/* .product-info {
+.product-info {
   margin-top: 10rem !important;
-} */
+}
 
 .title-home {
   margin-top: 15rem;
@@ -98,7 +98,7 @@
 
 .cart button:nth-child(1):hover {
   background-color: rgba(1, 1, 1, 1);
-  color: white
+  color: white;
 }
 
 .cart button:nth-child(2) {
