@@ -138,7 +138,7 @@ const Navbar = () => {
 
       <nav>
         <a href="/">
-          <img className="logo-img" src="../assets/img/newlogo2.png" alt="logo" />
+          <img className="logo-img" src="/newlogo2.png" alt="logo" />
         </a>
 
         <div className="nav-links">
