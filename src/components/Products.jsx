@@ -13,6 +13,7 @@ const Products = () => {
         {data?.map((item, index) =>
           index < 8 ? (
             <Link
+              style={{ textDecoration: "none" }}
               key={index}
               style={{ textDecoration: "none" }}
               to={`product/${item.id}`}

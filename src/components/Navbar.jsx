@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { useGlobalStore } from "../context/Store";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -49,9 +50,13 @@ const Navbar = () => {
           <path d="M6 6l12 12"></path>
         </svg>
         <div>
-          <a href="categories">Categories</a>
+          <Link style={{ textDecoration: "none" }} to={"/categories"}>
+            <a>Categories</a>
+          </Link>
           <a href="/">Home</a>
-          <a href="">Product Page</a>
+          <Link style={{ textDecoration: "none" }} to={"/product/1"}>
+            <a>Product Page</a>
+          </Link>
         </div>
       </div>
 
@@ -81,8 +86,10 @@ const Navbar = () => {
         {/* Checkout Page */}
         <div className="cart-body">
           <div className="full-cart-div">
-            <di className="full-cart">
-              {cart &&
+            <div className="full-cart">
+              {cart?.length === 0 ? (
+                <></>
+              ) : (
                 cart?.map((item, index) => (
                   <div key={index} className="cart-item">
                     <div className="cart-img">
@@ -120,8 +127,9 @@ const Navbar = () => {
                       </svg>
                     </div>
                   </div>
-                ))}
-            </di>
+                ))
+              )}
+            </div>
           </div>
           <div className="subtotal-div">
             <div className="sub-right">

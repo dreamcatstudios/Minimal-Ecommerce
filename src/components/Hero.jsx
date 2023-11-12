@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div className="hero container">
-      <Link to={"/categories/furniture"}>
+      <Link style={{ textDecoration: "none" }} to={"/categories/furniture"}>
         <div className="grid-1 ">
           <h1>Live Comfortably</h1>
         </div>
       </Link>
-      <Link to={"/categories/skin-care"}>
+      <Link style={{ textDecoration: "none" }} to={"/categories/skin-care"}>
         <div className="grid-2">
           <h1>Skincare</h1>
         </div>
@@ -18,7 +18,8 @@ const Hero = () => {
 
       <div className="grid-3 ">
         <Link
-          style={{ width: "100%"}}
+          style={{ textDecoration: "none" }}
+          style={{ width: "100%" }}
           to={"/categories/kitchen"}
         >
           <div className="grid-4">
@@ -26,7 +27,8 @@ const Hero = () => {
           </div>
         </Link>
         <Link
-          style={{ width: "100%"}}
+          style={{ textDecoration: "none" }}
+          style={{ width: "100%" }}
           to={"/categories/electronic"}
         >
           <div className="grid-5">

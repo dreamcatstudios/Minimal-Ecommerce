@@ -15,7 +15,7 @@ const Error = () => {
         <div class="content">
           <h2>Oops!</h2>
           <p>Are you lost in space?</p>
-          <Link to={"/"}>
+          <Link style={{ textDecoration: "none" }} to={"/"}>
             <button className="error-button">Back To Home</button>
           </Link>
         </div>

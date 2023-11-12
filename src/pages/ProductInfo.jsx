@@ -62,15 +62,15 @@ const ProductInfo = () => {
   useEffect(() => {
     scrollToTop();
     data[productId - 1].img && setImage(data[productId - 1].img);
-    handleLastProduct(productId);
+    // handleLastProduct(productId);
   }, []);
 
   return (
     <>
       <Navbar />
-      {data?.map((item, index) =>
+      {data?.map((item) =>
         item.id == productId ? (
-          <div key={index} className="container product-info">
+          <div key={item.id} className="container product-info">
             <h1 className="product-info-heading">{item.description}</h1>
             <div className="product-page-grid">
               <div className="left-grid">
@@ -120,7 +120,9 @@ const ProductInfo = () => {
               </div>
             </div>
           </div>
-        ) : null
+        ) : (
+          null
+        )
       )}
 
       <Snackbar

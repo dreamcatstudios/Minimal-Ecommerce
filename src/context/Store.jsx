@@ -10,9 +10,7 @@ function StoreProvider({ children }) {
   );
   const [error, setError] = useState(null);
   const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || [
-      { id: 1, quantity: 1, price: 0, title: "", img: "" },
-    ]
+    JSON.parse(localStorage.getItem("cart")) || []
   );
 
   const [totalPrice, setTotalPrice] = useState(0);
@@ -37,18 +35,14 @@ function StoreProvider({ children }) {
   const decreaseQuantity = (product) => {
     const updatedCart = cart.map((item) =>
       item === product
-        ? {
-            ...item,
-            quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity,
-          }
+        ? { ...item, quantity: item.quantity > 0 ? item.quantity - 1 : 0 }
         : item
     );
     setCart(updatedCart);
   };
 
   const removeItem = (id) => {
-    console.log("id: ", id);
-    const updatedCart = cart.filter((_, index) => index != id);
+    const updatedCart = cart.filter((_, index) => index !== id);
     setCart(updatedCart);
   };
 
